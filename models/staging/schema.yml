@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned and Standardized customer data from raw_customers table."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    columns:
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Valid','Invalid']
+      - name: quantity
+        data_tests:
+          - positive_value

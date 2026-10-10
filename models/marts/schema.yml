@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: product_performance
+    description: "Product-level sales performance summary."
+
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: total_sales
+        data_tests:
+          - positive_value
+
+  - name: category_performance
+    description: "Category-level sales performance summary."
+
+    columns:
+      - name: category
+        data_tests:
+          - not_null
+          - unique
+
+      - name: total_sales
+        data_tests:
+          - positive_value
+  - name: category_group_performance
+    description: "Category-group level sales performance summary."
+
+    columns:
+      - name: category_group
+        data_tests:
+          - not_null
+          - unique
+
+      - name: total_sales
+        data_tests:
+          - positive_value
